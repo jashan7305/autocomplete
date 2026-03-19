@@ -1,0 +1,408 @@
+/* ─── Catppuccin Mocha Palette ─── */
+:root {
+    --base:    #1e1e2e;
+    --mantle:  #181825;
+    --crust:   #11111b;
+    --surface0: #313244;
+    --surface1: #45475a;
+    --surface2: #585b70;
+    --overlay0: #6c7086;
+    --overlay1: #7f849c;
+    --overlay2: #9399b2;
+    --text:    #cdd6f4;
+    --subtext0: #a6adc8;
+    --subtext1: #bac2de;
+    --lavender: #b4befe;
+    --blue:    #89b4fa;
+    --sapphire: #74c7ec;
+    --sky:     #89dceb;
+    --teal:    #94e2d5;
+    --green:   #a6e3a1;
+    --yellow:  #f9e2af;
+    --peach:   #fab387;
+    --maroon:  #eba0ac;
+    --red:     #f38ba8;
+    --mauve:   #cba6f7;
+    --pink:    #f5c2e7;
+    --flamingo: #f2cdcd;
+    --rosewater: #f5e0dc;
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --topbar-h: 54px;
+    --panel-header-h: 40px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--base);
+    color: var(--text);
+    font-size: 14px;
+}
+
+/* ─── Top Bar ─── */
+.topbar {
+    height: var(--topbar-h);
+    background: var(--crust);
+    border-bottom: 1px solid var(--surface0);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    flex-shrink: 0;
+    gap: 16px;
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.logo-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--mauve);
+}
+
+.app-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.3px;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.app-title .accent {
+    color: var(--mauve);
+}
+
+.upload-zone {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.file-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: var(--surface0);
+    border: 1px solid var(--surface1);
+    border-radius: var(--radius-sm);
+    color: var(--subtext1);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.file-label:hover {
+    background: var(--surface1);
+    color: var(--text);
+    border-color: var(--overlay0);
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.upload-btn {
+    padding: 6px 18px;
+    background: var(--mauve);
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--crust);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.upload-btn:hover {
+    background: var(--lavender);
+    transform: translateY(-1px);
+}
+
+.upload-btn:active {
+    transform: translateY(0);
+}
+
+.file-name {
+    font-size: 12px;
+    color: var(--overlay1);
+    font-family: 'JetBrains Mono', monospace;
+    max-width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ─── Main Layout ─── */
+.app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* ─── Panel shared styles ─── */
+.panel-header {
+    height: var(--panel-header-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    background: var(--mantle);
+    border-bottom: 1px solid var(--surface0);
+    flex-shrink: 0;
+}
+
+.panel-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--overlay2);
+}
+
+.hint {
+    font-size: 11px;
+    color: var(--overlay0);
+    font-style: italic;
+}
+
+/* ─── Editor Panel (left 50%) ─── */
+.editor-panel {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    background: var(--base);
+}
+
+.editor-wrap {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+#editor {
+    width: 100%;
+    height: 100%;
+    background: var(--base);
+    color: var(--text);
+    border: none;
+    outline: none;
+    resize: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    line-height: 1.75;
+    padding: 20px 24px;
+    caret-color: var(--mauve);
+}
+
+#editor::placeholder {
+    color: var(--surface2);
+    font-style: italic;
+}
+
+#editor::-webkit-scrollbar {
+    width: 6px;
+}
+
+#editor::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#editor::-webkit-scrollbar-thumb {
+    background: var(--surface1);
+    border-radius: 3px;
+}
+
+/* ─── Suggestions Bar (horizontal, bottom of editor panel) ─── */
+#suggestions {
+    display: none;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 6px;
+    padding: 8px 12px;
+    background: var(--mantle);
+    border-top: 1px solid var(--surface0);
+    overflow-x: auto;
+    flex-shrink: 0;
+}
+
+#suggestions::-webkit-scrollbar {
+    height: 3px;
+}
+#suggestions::-webkit-scrollbar-thumb {
+    background: var(--surface1);
+    border-radius: 2px;
+}
+
+#suggestions.visible {
+    display: flex;
+}
+
+.suggestion-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    background: var(--surface0);
+    border: 1px solid var(--surface1);
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--subtext1);
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background 0.1s, border-color 0.1s, color 0.1s;
+}
+
+.suggestion-item:hover,
+.suggestion-item.selected {
+    background: var(--surface1);
+    border-color: var(--mauve);
+    color: var(--text);
+}
+
+.suggestion-item.selected .suggestion-dot {
+    opacity: 1;
+}
+
+.suggestion-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--mauve);
+    flex-shrink: 0;
+    opacity: 0.6;
+}
+
+.suggestion-label {
+    display: inline;
+}
+
+.suggestion-item .match {
+    color: var(--mauve);
+    font-weight: 600;
+}
+
+/* ─── Divider ─── */
+.divider {
+    width: 1px;
+    background: var(--surface0);
+    flex-shrink: 0;
+}
+
+/* ─── PDF Panel (right 50%) ─── */
+.pdf-panel {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    background: var(--crust);
+}
+
+.pdf-scroll {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.pdf-scroll::-webkit-scrollbar {
+    width: 8px;
+}
+
+.pdf-scroll::-webkit-scrollbar-track {
+    background: var(--crust);
+}
+
+.pdf-scroll::-webkit-scrollbar-thumb {
+    background: var(--surface1);
+    border-radius: 4px;
+    border: 2px solid var(--crust);
+}
+
+.pdf-scroll::-webkit-scrollbar-thumb:hover {
+    background: var(--surface2);
+}
+
+.pdf-inner {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    min-height: 100%;
+}
+
+/* ─── Empty state ─── */
+.pdf-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    height: 100%;
+    min-height: 300px;
+    color: var(--surface2);
+}
+
+.pdf-empty svg {
+    opacity: 0.4;
+}
+
+.pdf-empty p {
+    font-size: 13px;
+    color: var(--overlay0);
+}
+
+/* ─── PDF Pages ─── */
+.page-wrapper {
+    position: relative;
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+    background: #fff;
+    border: 1px solid var(--surface0);
+    transition: box-shadow 0.2s;
+    /* No overflow:hidden — highlights are absolutely positioned children */
+}
+
+.page-wrapper:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+}
+
+canvas {
+    display: block;
+    max-width: 100%;
+}
+
+/* ─── Highlights ─── */
+.highlight-box {
+    position: absolute;
+    background: rgb(92, 216, 67);
+    opacity: 0.4;
+    pointer-events: none;
+}
