@@ -6,6 +6,7 @@ import os
 from logic.pdf import upload_pdf
 from logic.suggest import get_suggestions
 from logic.highlight import get_word_positions
+from logic.delete import delete_file
 
 router = APIRouter()
 
@@ -32,3 +33,7 @@ async def get_pdf(file_id: str):
         return {"error": "File not found"}
 
     return FileResponse(file_path, media_type="application/pdf")
+
+@router.delete("/delete")
+async def delete(file_id: str):
+    return delete_file(file_id)
