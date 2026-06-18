@@ -2,8 +2,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const editor = document.getElementById("editor");
     const suggestionsDiv = document.getElementById("suggestions");
 
-    // ── Cursor position tracker ──────────────────────────────────────────
-    // Uses a hidden mirror div to measure where the caret actually is
+    /**
+     * Calculates the pixel coordinates of the caret in a textarea.
+     * @param {HTMLTextAreaElement} textarea - The textarea element.
+     * @returns {{x: number, y: number}} The x and y coordinates relative to the textarea.
+     */
     function getCaretCoords(textarea) {
         const mirror = document.createElement("div");
         const style = window.getComputedStyle(textarea);
@@ -46,7 +49,9 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     }
 
-    // ── Position suggestions popup near caret ────────────────────────────
+    /**
+     * Positions the suggestions popup near the caret.
+     */
     function positionSuggestions() {
         const editorWrap = editor.parentElement;
         const wrapRect   = editorWrap.getBoundingClientRect();
@@ -71,7 +76,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ── Get the word currently being typed (word under/before cursor) ────
+    /**
+     * Gets the word fragment currently being typed.
+     * @param {HTMLTextAreaElement} textarea - The textarea element.
+     * @returns {string} The word being typed.
+     */
     function getCurrentWord(textarea) {
         const pos  = textarea.selectionStart;
         const text = textarea.value;
@@ -114,6 +123,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let selectedIndex = -1;
 
+    /**
+     * Updates the UI selection state.
+     */
     function updateSelection() {
         const items = suggestionsDiv.querySelectorAll(".suggestion-item");
         items.forEach((el, i) => {
@@ -156,6 +168,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    /**
+     * Displays the suggestion list in the UI.
+     * @param {string[]} list - The list of suggestions.
+     */
     function showSuggestions(list) {
         suggestionsDiv.innerHTML = "";
 
@@ -196,16 +212,27 @@ document.addEventListener("DOMContentLoaded", () => {
         selectedIndex = -1;
     }
 
+    /**
+     * Hides the suggestion popup.
+     */
     function hideSuggestions() {
         suggestionsDiv.innerHTML = "";
         suggestionsDiv.classList.remove("visible");
     }
 
+    /**
+     * Escapes HTML characters.
+     * @param {string} str - The string to escape.
+     * @returns {string} The escaped string.
+     */
     function escapeHtml(str) {
         return str.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
     }
 
-    // ── Insert chosen suggestion ─────────────────────────────────────────
+    /**
+     * Inserts the chosen suggestion into the editor.
+     * @param {string} word - The suggestion to insert.
+     */
     function insertSuggestion(word) {
         const pos    = editor.selectionStart;
         const text   = editor.value;
