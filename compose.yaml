@@ -1,0 +1,10 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: pdf_autocomplete_backend
+    ports:
+      - "127.0.0.1:8001:8001"
+
+    restart: unless-stopped
